@@ -1,5 +1,6 @@
 import { DUMMY_NEWS } from "@/data/news";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import React from "react";
 
 const NewsPageDetails = ({ params }) => {
@@ -8,6 +9,10 @@ const NewsPageDetails = ({ params }) => {
   const foundNewsItem = DUMMY_NEWS.find(
     (newsItem) => newsItem.slug === newsSlug
   );
+
+  if (!foundNewsItem) {
+    notFound();
+  }
 
   return (
     <article className="flex flex-col items-center justify-center max-w-3xl m-auto">
