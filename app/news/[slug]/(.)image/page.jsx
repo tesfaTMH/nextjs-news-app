@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 
-const ImagePage = ({ params }) => {
+const InterceptedImagePage = ({ params }) => {
   const newsSlug = params.slug;
 
   const foundNewsItem = DUMMY_NEWS.find(
@@ -16,6 +16,7 @@ const ImagePage = ({ params }) => {
 
   return (
     <div>
+      <h2 className="text-white z-0">Intercepted route page</h2>
       <Image
         src={`/images/news/${foundNewsItem.image}`}
         alt={foundNewsItem.title}
@@ -27,4 +28,4 @@ const ImagePage = ({ params }) => {
   );
 };
 
-export default ImagePage;
+export default InterceptedImagePage;

@@ -24,7 +24,7 @@ const NewsPageDetails = ({ params }) => {
             alt={foundNewsItem.title}
             width={200}
             height={200}
-            className="object-cover w-96 h-48 aspect-video rounded-md"
+            className="object-cover w-96 h-48 aspect-video rounded-md transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
           />
         </Link>
         <time dateTime={foundNewsItem.date}>{foundNewsItem.date}</time>

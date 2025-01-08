@@ -13,7 +13,7 @@ const NewsList = ({ listOfNews }) => {
               alt={title}
               width={300}
               height={300}
-              className="object-cover rounded-2xl"
+              className="object-cover rounded-2xl transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
             />
             <span>{title}</span>
           </Link>
