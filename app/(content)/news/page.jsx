@@ -1,15 +1,9 @@
 import NewsList from "@/components/NewsList";
 import { DUMMY_NEWS } from "@/data/news";
+import { getAllNews } from "@/lib/news";
 
 const NewsPage = async () => {
-  const response = await fetch("http://localhost:8080/news");
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch news data!");
-  }
-
-  const news = await response.json();
-
+  const news = getAllNews();
   return (
     <div className="flex flex-col items-center justify-center gap-6">
       <h1>News Page</h1>
