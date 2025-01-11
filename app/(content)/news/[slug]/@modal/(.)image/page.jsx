@@ -1,16 +1,20 @@
-"use client";
+import ModalBackdrop from "@/components/ModalBackdrop";
 import { DUMMY_NEWS } from "@/data/news";
+import { getNewsItem } from "@/lib/news";
 import Image from "next/image";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import React from "react";
 
-const InterceptedImagePage = ({ params }) => {
+const InterceptedImagePage = async ({ params }) => {
   const newsSlug = React.use(params).slug;
-  const router = useRouter();
 
-  const foundNewsItem = DUMMY_NEWS.find(
+  {
+    /*const foundNewsItem = DUMMY_NEWS.find(
     (newsItem) => newsItem.slug === newsSlug
-  );
+  );*/
+  }
+
+  const foundNewsItem = await getNewsItem(newsSlug);
 
   if (!foundNewsItem) {
     notFound();
@@ -19,11 +23,10 @@ const InterceptedImagePage = ({ params }) => {
   return (
     <>
       {/*<h2 className="text-white">Intercepted route page</h2>*/}
-      <div className="flex items-center justify-center fixed top-0 left-0 w-full h-full bg-[rgba(0, 0, 0, 0.85)] m-10 p-6" />
+      <ModalBackdrop />
       <dialog
-        className="w-max-xl w-[100%] border-none rounded-lg p-2 shadow-[0 0 10px 0 #181817] bg-[#bababa] z-10"
+        className="w-max-xl w-[80%] h-full border-none rounded-lg p-2 shadow-[0 0 10px 0 #181817] bg-[#bababa]"
         open
-        onClick={router.back}
       >
         <Image
           src={`/images/news/${foundNewsItem.image}`}

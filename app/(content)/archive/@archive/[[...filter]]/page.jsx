@@ -9,30 +9,32 @@ import { notFound } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 
-const ArchivePageByYear = ({ params }) => {
+const ArchivePageByYear = async ({ params }) => {
   const filter = params.filter;
 
   const selectedYear = filter?.[0];
   const selectedMonth = filter?.[1];
 
-  let links = getAvailableNewsYears();
+  let links = await getAvailableNewsYears();
 
   let news;
 
   if (selectedYear && !selectedMonth) {
-    news = getNewsForYear(selectedYear);
+    news = await getNewsForYear(selectedYear);
     links = getAvailableNewsMonths(selectedYear);
   }
 
   if (selectedYear && selectedMonth) {
-    news = getNewsForYearAndMonth(selectedYear, selectedMonth);
+    news = await getNewsForYearAndMonth(selectedYear, selectedMonth);
     links = [];
   }
 
+  const getAvailableYears = await getAvailableNewsYears();
+
   if (
-    (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) ||
+    (selectedYear && !getAvailableYears.includes(selectedYear)) ||
     (selectedMonth &&
-      !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
+      !getAvailableNewsMonths(selectedYear).includes(selectedMonth))
   ) {
     throw new Error("Invalid filter");
   }
