@@ -1,12 +1,10 @@
-"use client";
-import { DUMMY_NEWS } from "@/data/news";
 import { getNewsItem } from "@/lib/news";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 
 const ImagePage = async ({ params }) => {
-  const newsSlug = React.use(params).slug;
+  const newsSlug = await params.slug;
 
   {
     /*const foundNewsItem = DUMMY_NEWS.find(
@@ -28,7 +26,7 @@ const ImagePage = async ({ params }) => {
         width={300}
         height={150}
         //className="h-auto w-[50%] rounded-lg shadow-xl dark:shadow-gray-800 transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
-        className="w-[50%] h-auto object-cover rounded-3xl text-center"
+        className="w-[90%] h-auto object-cover rounded-3xl text-center"
       />
     </div>
   );
